@@ -1,5 +1,6 @@
 ---
 title: "index1"
+layout: stylesheets/github-light.css
 output:
   html_document:
     css: stylesheets/normalize.css
