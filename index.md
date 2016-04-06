@@ -46,9 +46,9 @@ stroke_horizontal_line 0, 500
 
 Setting dash line will result in dash lines in following tables. Without using `undash()`, the following tables will have dash lines as well.
 
-## Use gem *combine_pdf* to combine pdf files
+## Use gem **combine_pdf** to combine pdf files
 
-After using Prawn to generate two pdf files, I used gem [*combine_pdf*](https://github.com/boazsegev/combine_pdf) to combine them together.
+After using Prawn to generate two pdf files, I used gem [**combine_pdf**](https://github.com/boazsegev/combine_pdf) to combine them together.
 
 The simplest example:
 
@@ -76,4 +76,4 @@ respond_to do |format|
 end
 {% endhighlight%}
 
-hint: When I use `send_data pdf, :filename => "combine.pdf", :type => "application/pdf", :disposition => "inline"`, the browser gives _error loading pdf file_. The reason is, pdf is the object, while pdf.to_pdf is the PDF file stream that could be displayed.
+hint: When I use `send_data pdf, :filename => "combine.pdf", :type => "application/pdf", :disposition => "inline"`, the browser gives **error loading pdf file**. The reason is, pdf is the object, while pdf.to_pdf is the PDF file stream that could be displayed.
