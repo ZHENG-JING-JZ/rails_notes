@@ -16,4 +16,4 @@ twitter_username: jekyllrb
 github_username:  ZhengJingWalter
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown

@@ -5,11 +5,11 @@ layout: default
 
 ## Accessing rails scope objects:
 
-	```
+	{% highlight ruby %}
 	['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].each do |wkd|
 	  @class_sessions.send(wkd)
 	end
-	```
+	{% endhighlight %}
 
 ## Kill rails process in cmd
 
