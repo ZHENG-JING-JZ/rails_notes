@@ -24,20 +24,21 @@ kill -9 PID
 ```
 
 ## Use Prawn gem to generate pdf
-	Draw a dash line:
+
+Draw a dash line:
 
 {% highlight ruby %}
 dash(4, :space => 4, :phase => 1)
 stroke_horizontal_line 0, 500
 {% endhighlight %}
 
-  	Change back to solid line:
+ Change back to solid line:
 
 {% highlight ruby %}
 undash()
 {% endhighlight %}
 
-  	then
+then
 
 {% highlight ruby %}
 stroke_horizontal_line 0, 500
