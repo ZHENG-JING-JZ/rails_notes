@@ -13,15 +13,15 @@ end
 
 ## Kill rails process in cmd
 
-	```
-	lsof -wni tcp:3000
-	```
+```
+lsof -wni tcp:3000
+```
 
 This will return PID number and other information of the process
 
-	```
-	kill -9 PID
-	```
+```
+kill -9 PID
+```
 
 ## Use Prawn gem to generate pdf
 
