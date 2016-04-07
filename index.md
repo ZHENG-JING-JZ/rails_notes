@@ -87,3 +87,36 @@ To change the default setting, click **Sublime Text -> Preferences -> Settings D
 "tab_size": 2,
 "translate_tabs_to_spaces": true,
 ```
+
+## Set encoding while import csv files
+
+The previous encoding code: 
+
+{% highlight ruby %}
+CSV.parse(csv,skip_blanks: true, headers:true, return_headers: false,encoding:"iso-8859-1").each do |row|
+...
+end
+{% endhighlight%}
+
+There are invalid characters in the csv file. We can replace these characters with "".
+
+{% highlight ruby %}
+CSV.parse(csv.encode!("utf-8", "iso-8859-1", invalid: :replace, replace: ''), headers: true, skip_blanks: true, return_headers: false).each do |row|
+...
+end
+{% endhighlight%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
