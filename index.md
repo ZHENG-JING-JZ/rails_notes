@@ -76,4 +76,14 @@ respond_to do |format|
 end
 {% endhighlight%}
 
-hint: When I use `send_data pdf, :filename => "combine.pdf", :type => "application/pdf", :disposition => "inline"`, the browser gives **error loading pdf file**. The reason is, pdf is the object, while pdf.to_pdf is the PDF file stream that could be displayed.
+Hint: When I use `send_data pdf, :filename => "combine.pdf", :type => "application/pdf", :disposition => "inline"`, the browser gives **error loading pdf file**. The reason is, pdf is the object, while pdf.to_pdf is the PDF file stream that could be displayed.
+
+## Set indentation of Sublime Text 3
+
+To set indentation to two spaces, we can simply click **view -> indentation** to set. But this can only change the setting for the current tab.  
+To change the default setting, click ** Sublime Text -> Preferences -> Settings Default **, this file is the default setting, users are not supposed to change it. We can copy its content, and paste it to ** Sublime Text -> Preferences -> Settings User **. Find the indentation settings and change it:
+
+```
+"tab_size": 2,
+"translate_tabs_to_spaces": true,
+```
