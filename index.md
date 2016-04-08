@@ -88,7 +88,7 @@ To change the default setting, click **Sublime Text -> Preferences -> Settings D
 "translate_tabs_to_spaces": true,
 ```
 
-The setting sometimes does not work because it only work for chosen languages. For example, when I did this setting, I was opening a ruby file. After I saved the settings, I found it doesn't work on haml files. To make the setting apply to haml, first open an haml file, then click **Sublime Text -> Preferences -> Settings -> More -> Syntax Specific -> User**. Copy the above setting code into the file and save. Repeat this action if some other languages files need to be set.
+The setting sometimes does not work because it only works for chosen languages. For example, when I did this setting, I was opening a ruby file. After I saved the settings, I found it does not work on haml files. To make the setting apply to haml, first open an haml file, then click **Sublime Text -> Preferences -> Settings -> More -> Syntax Specific -> User**. Copy the above setting code into the file and save. Repeat this action if some other languages files need to be set.
 
 ## Set encoding while import csv files
 
