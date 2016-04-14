@@ -108,9 +108,77 @@ CSV.parse(csv.encode!("utf-8", "iso-8859-1", invalid: :replace, replace: ''), he
 end
 {% endhighlight%}
 
+## Using **delayed_job** in Rails application
 
+Add gem into gemfile:
 
+{% highlight ruby %}
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+{% endhighlight%}
 
+Create model and database table for delayed job:
+
+{% highlight ruby %}
+rails g delayed_job:active_record
+rake db:migrate
+{% endhighlight%}
+
+## Using gem [**sidekiq**](https://github.com/mperham/sidekiq) to run long time jobs in background and [**sidekiq_status**](https://github.com/cryo28/sidekiq_status) to track job status
+Jobs could be done using Worker in sidekiq. Example code:
+Create a worker ruby file in **app/workers** folder
+
+{% highlight ruby %}
+class MyWorker
+  include SidekiqStatus::Worker
+  def perform(variable)
+    do something...
+  end
+end
+{% endhighlight%}
+
+Note that `perform` is an instance method, whereas `perform_async` is called on the class.  
+In controller:
+
+{% highlight ruby %}
+jid = MyWorker.perform_async(variable)
+{% endhighlight%}
+
+`jid` is the job id which is returned by the `perform_async` method. It can be used to track the job status.
+
+{% highlight ruby %}
+container = SidekiqStatus::Container.load(jid)
+container.status       # => 'working'
+container.at           # => 50
+container.total        # => 200
+container.pct_complete # => 25
+container.message      # => 'Processing object #{50}'
+{% endhighlight%}
+
+## Compress multiple files to zip and providing downloading in Rails
+
+{% highlight ruby %}
+  require 'rubygems'
+  require 'zip'
+  m = params[:month].to_i
+  if m > 8
+    y_m = "#{Date::MONTHNAMES[m]} #{CurrentYear.first.year}"
+  else
+    y_m = "#{Date::MONTHNAMES[m]} #{CurrentYear.first.year+1}"
+  end
+  @paperclip_objects = xxx
+  t = Tempfile.new('tmp-zip-' + request.remote_ip)
+  Zip::OutputStream.open(t.path) do |zos|
+    @paperclip_objects.each do |i|
+      zos.put_next_entry(i.pdf_file_name)
+      zos.print IO.read(i.pdf.path)
+    end
+  end
+  send_file t.path, :type => "application/zip", :filename => "myzip.zip"
+  t.close
+{% endhighlight%}
+
+Hint: `pdf` is the attachment field in the objects. This piece of code uses `Tempfile` so these files could be deleted when calling `close`.
 
 
 
