@@ -144,6 +144,8 @@ In controller:
 jid = MyWorker.perform_async(variable)
 {% endhighlight%}
 
+Note: To make any changes on the `perform` method or any other methods which are performed by sidekiq, the sidekiq server should be restarted to make the changes apply.
+
 `jid` is the job id which is returned by the `perform_async` method. It can be used to track the job status.
 
 {% highlight ruby %}
