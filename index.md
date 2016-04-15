@@ -182,6 +182,17 @@ container.message      # => 'Processing object #{50}'
 
 Hint: `pdf` is the attachment field in the objects. This piece of code uses `Tempfile` so these files could be deleted when calling `close`.
 
+## Pass parameters in `link_to`
+
+{% highlight ruby %}
+= link_to 'button', my_controller_path(a: 123, b: 321), class: 'btn'
+{% endhighlight%}
+
+In controller:
+{% highlight ruby %}
+@a_value = params[:a]
+{% endhighlight%}
+
 
 
 
