@@ -193,6 +193,15 @@ In controller:
 @a_value = params[:a]
 {% endhighlight%}
 
+## Pass parameters in `render`  
+`= render 'form', contact_us: @contact_us, product_id: @product_id`
+
+In `_form.html.haml`:
+{% highlight ruby %}
+= simple_form_for contact_us, url: contact_path, ....
+%p= product_id
+{% endhighlight%}
+
 
 
 
