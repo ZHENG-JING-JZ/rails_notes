@@ -1,5 +1,7 @@
 ---
-layout: default
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 ---
 
 
@@ -209,7 +211,8 @@ In `_form.html.haml`:
 DateTimePicker can be used to display and select date and time. 
 
 {% highlight haml %}
-.span3= f.input :created_at, as: :string, input_html: {value: @student.created_at? ? @student.created_at.to_s(:hk) : Time.now, class: 'datetimepicker'}
+.span3= f.input :created_at, as: :string, 
+  input_html: {value: @student.created_at? ? @student.created_at.to_s(:hk) : Time.now, class: 'datetimepicker'}
 {% endhighlight%}
 
 {% highlight javascript %}
