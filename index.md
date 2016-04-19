@@ -210,7 +210,7 @@ DateTimePicker can be used to display and select date and time.
 .span3= f.input :created_at, as: :string, input_html: {value: @student.created_at? ? @student.created_at.to_s(:hk) : Time.now, class: 'datetimepicker'}
 ```
 
-```javascript
+``` javascript
 $('.datetimepicker').datetimepicker({
       format: 'YYYY/MM/DD HH:mm',
       sideBySide: true,
