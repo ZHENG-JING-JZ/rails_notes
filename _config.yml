@@ -17,3 +17,9 @@ github_username:  ZhengJingWalter
 
 # Build settings
 markdown: kramdown
+
+syntax-highlighting:
+  enabled : true
+  css: syntax.css
+
+pagination: 5

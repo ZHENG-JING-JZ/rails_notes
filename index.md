@@ -1,10 +1,9 @@
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+---
+layout: default
+---
+<link rel="stylesheet" href="styles/default.css">
+<script src="highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
 ## Accessing rails scope objects:
 
 {% highlight ruby %}
