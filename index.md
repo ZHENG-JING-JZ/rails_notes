@@ -202,6 +202,23 @@ In `_form.html.haml`:
 %p= product_id
 {% endhighlight%}
 
+## Bootstrap [**DateTimePicker**](https://github.com/TrevorS/bootstrap3-datetimepicker-rails)
+
+DateTimePicker can be used to display and select date and time. 
+
+```
+.span3= f.input :created_at, as: :string, input_html: {value: @student.created_at? ? @student.created_at.to_s(:hk) : Time.now, class: 'datetimepicker'}
+```
+
+```javascript
+$('.datetimepicker').datetimepicker({
+      format: 'YYYY/MM/DD HH:mm',
+      sideBySide: true,
+      inline: true,
+      locale: 'zh-tw'
+});
+```
+
 
 
 
