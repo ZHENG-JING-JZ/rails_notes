@@ -194,7 +194,9 @@ In controller:
 {% endhighlight%}
 
 ## Pass parameters in `render`  
-``` ruby = render 'form', contact_us: @contact_us, product_id: @product_id```
+{% highlight ruby %}
+= render 'form', contact_us: @contact_us, product_id: @product_id
+{% endhighlight%}
 
 In `_form.html.haml`:
 {% highlight ruby %}
@@ -206,18 +208,18 @@ In `_form.html.haml`:
 
 DateTimePicker can be used to display and select date and time. 
 
-```
+{% highlight haml %}
 .span3= f.input :created_at, as: :string, input_html: {value: @student.created_at? ? @student.created_at.to_s(:hk) : Time.now, class: 'datetimepicker'}
-```
+{% endhighlight%}
 
-``` javascript
+{% highlight javascript %}
 $('.datetimepicker').datetimepicker({
       format: 'YYYY/MM/DD HH:mm',
       sideBySide: true,
       inline: true,
       locale: 'zh-tw'
 });
-```
+{% endhighlight%}
 
 
 
