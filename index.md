@@ -194,7 +194,7 @@ In controller:
 {% endhighlight%}
 
 ## Pass parameters in `render`  
-`= render 'form', contact_us: @contact_us, product_id: @product_id`
+``` ruby = render 'form', contact_us: @contact_us, product_id: @product_id```
 
 In `_form.html.haml`:
 {% highlight ruby %}
