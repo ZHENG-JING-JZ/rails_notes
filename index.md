@@ -223,6 +223,22 @@ $('.datetimepicker').datetimepicker({
 });
 {% endhighlight%}
 
+This 'datetimepicker' gem is designed for bootstrap3. It raises javascript error `Uncaught Error: datetimepicker component should be placed within a relative positioned container`. To solve this issue, define one of its parent elements as a relative positioned container. For example:
+
+{% highlight haml %}
+.span3{style: 'position: relative'}
+  = f.input :created_at, as: :string, input_html: {value: @student.created_at? ? @student.created_at.to_s(:localdb) : Time.now, class: 'datetimepicker'}
+{% endhighlight%}
+
+
+
+
+
+
+
+
+
+
 
 
 
