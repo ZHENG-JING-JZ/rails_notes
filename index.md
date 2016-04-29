@@ -230,6 +230,65 @@ This 'datetimepicker' gem is designed for bootstrap3. It raises javascript error
   = f.input :created_at, as: :string, input_html: {value: @student.created_at? ? @student.created_at.to_s(:localdb) : Time.now, class: 'datetimepicker'}
 {% endhighlight%}
 
+## Memory issue on staging server
+
+After deployed to staging server, the project raised an error when uploading file using paperclip: `Errno::ENOMEM (Cannot allocate memory - file -b --mime '/tmp/d5243f00b80eed0af24ebac9046b66af20160429-30082-ynxdk2.pdf')`. This error has never occured in my development environment. The reason is, paperclip uses ImageMagick for image processing, gem `cocaine` is the way it invokes ImageMagick. It needs to use fork in linux system, which means if the parent process uses 500 MB memory, the child process will use exact the same size. This is widely used in Rails apps. It makes Rails cost more memory. To solve this problem, we can try using `gem 'posix-spawn'`. In my project, the error raises again after using this gem. We ended up updating memory of server. 
+
+ref: [**blog**](http://blog.sundaycoding.com/blog/2014/02/05/fighting-paperclip-errno-enomem-error/)
+
+## Starting `sidekiq` on staging server
+
+`sidekiq` is a gem that can run jobs in background. It can be deployed using `gem 'capistrano-sidekiq'`. In our project, sidekiq is not started on server after each deploy. The reason is to be determined. One way to start sidekiq on server manually is:
+
+{% highlight shell %}
+bundle exec sidekiq -e staging -d -L log/sidekiq.log -C config/sidekiq.yml 
+{% endhighlight%}
+
+Meaning of parameters:  
+`-d`, Daemonize process  
+`-L`, path to writable logfile  
+`-C`, path to YAML config file  
+`-e`, Application environment  
+
+## Facebook crawler
+
+My task is to craw the page content of a Facebook page of a closed group. The input is the url of the group. After some research, this is what I have found.  
+First of all, to access such a page in browser, we need to login with the Facebook username and password. Normal crawler gems like `Nokogiri` do not support login well. The best way to log into Facebook is to use [**Facebook Graph API**](https://developers.facebook.com/docs/graph-api). However, using Facebook API means we have to follow Facebook rules and cannot get information from a closed group. The solution to this task is to use `phantomjs` to simulate a browser programmatically. Here I choose [**`gem 'poltergeist'`**](https://github.com/teampoltergeist/poltergeist) and [**`gem 'capybara'`**](https://github.com/jnicklas/capybara). Below is the code:
+
+Create a file 'setup-capybara.rb':
+{% highlight ruby %}
+# Require the gems
+require 'capybara/poltergeist'
+
+# Configure Poltergeist to not blow up on websites with js errors aka every website with js
+# See more options at https://github.com/teampoltergeist/poltergeist#customization
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false, timeout: 120)
+end
+
+# Configure Capybara to use Poltergeist as the driver
+Capybara.default_driver = :poltergeist
+{% endhighlight%}
+
+Create another file 'test.rb':
+{% highlight ruby %}
+require './setup-capybara.rb'
+
+url = 'https://www.facebook.com/groups/1468981113348561/'
+browser = Capybara.current_session
+browser.visit url
+# browser.save_page
+browser.fill_in 'email', with: '123@gmail.com'
+browser.fill_in 'pass', with: '1234'
+browser.click_on 'loginbutton'
+# p browser.current_url
+img = browser.find('.coverPhotoImg')
+p img['src']
+number = browser.find_by_id('count_text')
+p number.text
+{% endhighlight%}
+
+This method is used to test website, so it can perfectly simulate a browser and all the action like fill in form and click button. It can also get html elements by id, class or other selectors. A great online example is [**here**](http://tutorials.jumpstartlab.com/topics/scraping-with-capybara.html)
 
 
 
