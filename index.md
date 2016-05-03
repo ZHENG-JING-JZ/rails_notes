@@ -288,7 +288,10 @@ number = browser.find_by_id('count_text')
 p number.text
 {% endhighlight%}
 
-This method is used to test website, so it can perfectly simulate a browser and all the action like fill in form and click button. It can also get html elements by id, class or other selectors. A great online example is [**here**](http://tutorials.jumpstartlab.com/topics/scraping-with-capybara.html)
+This method is used to test website, so it can perfectly simulate a browser and all the actions like fill in form and click button. It can also get html elements by id, class or other selectors. A great online example is [**here**](http://tutorials.jumpstartlab.com/topics/scraping-with-capybara.html)
+
+## Rails flash message
+Rails flash message is delete after `redirect` not `render`, so sometimes it is still shown after another redirect.
 
 
 
