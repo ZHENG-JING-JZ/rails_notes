@@ -293,6 +293,22 @@ This method is used to test website, so it can perfectly simulate a browser and 
 ## Rails flash message
 Rails flash message is delete after `redirect` not `render`, so sometimes it is still shown after another redirect.
 
+## Use Rails console on staging server
+
+To use Rails console like development environment, simply run `bundle exec rails c staging`. Note that this command needs to state which environment to run, like "staging", "production".
+
+## Sidekiq settings
+
+Sidekiq will by default retry a job if it fails. To change this setting, we need to run `rails console`:
+{% highlight ruby %}
+require 'sidekiq/api'
+Sidekiq::RetrySet.new.size   # check the size of retry queue
+Sidekiq::RetrySet.new.clear  # clear the retry queue
+Sidekiq::Queue.new.size      # check the size of jobs queue
+Sidekiq::Queeu.new.clear     # clear the jobs queue
+{% endhighlight%}
+
+
 
 
 
