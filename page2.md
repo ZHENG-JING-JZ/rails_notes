@@ -113,16 +113,16 @@ Access the remote server using SSH, then access mysql using command like `mysql 
 
 In mysql: 
 
-> * `show databases;` to list all the databases.
+* `show databases;` to list all the databases.
 
-> * `use mydb_name;` to change current database.
+* `use mydb_name;` to change current database.
 
-> * `show tables;` to list all the tables in the current database.
+* `show tables;` to list all the tables in the current database.
 
-> * `drop database mydb_name;` to drop a database.
+* `drop database mydb_name;` to drop a database.
 
-> * `create database mydb_name;` to create a database.
+* `create database mydb_name;` to create a database.
 
-> * `source /path_to/mydump.sql` to import the sql file into current database.
+* `source /path_to/mydump.sql` to import the sql file into current database.
 
-> * `ALTER DATABASE mydb_name CHARACTER SET utf8 COLLATE utf8_general_ci` before import data to avoid the error `Mysql2::Error: Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE)`
+* `ALTER DATABASE mydb_name CHARACTER SET utf8 COLLATE utf8_general_ci` before import data to avoid the error `Mysql2::Error: Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE)`
