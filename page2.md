@@ -126,3 +126,9 @@ In mysql:
 * `source /path_to/mydump.sql` to import the sql file into current database.
 
 * `ALTER DATABASE mydb_name CHARACTER SET utf8 COLLATE utf8_general_ci` before import data to avoid the error `Mysql2::Error: Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE)`
+
+## Restart Rails server on remote server
+
+`ssh deploy@123.123.123.1` to access the remote server.
+`/etc/init.d/my_project stop`
+`/etc/init.d/my_project start`
