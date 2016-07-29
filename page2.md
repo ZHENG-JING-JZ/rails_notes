@@ -132,3 +132,24 @@ In mysql:
 `ssh deploy@123.123.123.1` to access the remote server.
 `/etc/init.d/my_project stop`
 `/etc/init.d/my_project start`
+
+
+
+## Session in Rails
+
+Session is only available in controllers and views, cannot be used in models. 
+`session[:job_params].deep_merge!(job_params) if job_params` merge the hash values to session.
+
+## Multiple steps form in Rails
+
+A fundamental tutorial can be found [**here**](http://railscasts.com/episodes/217-multistep-forms?view=asciicast). This tutorial uses session to store the current step and the form values to pass through different steps.
+
+It can also be done by using gems.
+
+## Facebook iframe
+
+To display Facebook page in a iframe on web, simply go to [**Facebook developer website**](https://developers.facebook.com/docs/plugins/embedded-posts) and get the embedded iframe code from Facebook.
+
+## Google maps on web
+
+Google maps can be loaded into web in many ways. It now requires an API key to use geocoder and other services.
